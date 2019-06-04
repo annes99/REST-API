@@ -47,7 +47,6 @@ Active demo:
 
 ## Screenshot
 
-
 ## Status
 
 Project is: _IN PROGRESS_
