@@ -3,11 +3,10 @@
 // load modules
 const express = require('express');
 const morgan = require('morgan');
-const { sequelize, models } = require('./db');
+const { sequelize } = require('./db');
 const routes = require('./routes/routes');
 
-// Get references to our models.
-const { User, Course } = models;
+
 
 // variable to enable global error logging
 const enableGlobalErrorLogging = process.env.ENABLE_GLOBAL_ERROR_LOGGING === 'true';
