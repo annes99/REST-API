@@ -87,7 +87,7 @@ router.get('/courses', asyncMiddleware(async (req, res) => {
   const courses = await Course.findAll({
     include: [{
       model: User,
-      attributes: ['id', 'firstName', 'lastName', 'emailAddress']
+      attributes: ['firstName', 'lastName', 'emailAddress']
     }]
   });
 
@@ -105,7 +105,7 @@ router.get('/courses/:id', asyncMiddleware(async (req, res) => {
     },
     include: [{
       model: User,
-      attributes: ['id', 'firstName', 'lastName', 'emailAddress']
+      attributes: ['firstName', 'lastName', 'emailAddress']
     }]
 
   });
@@ -170,7 +170,7 @@ router.put('/courses/:id', validate('course'), authenticateUser, asyncMiddleware
       },
       include: [{
         model: User,
-        attributes: ['id', 'firstName', 'lastName', 'emailAddress']
+        attributes: ['firstName', 'lastName', 'emailAddress']
       }]
 
     });
@@ -205,7 +205,7 @@ router.delete('/courses/:id', authenticateUser, asyncMiddleware(async (req, res)
     },
     include: [{
       model: User,
-      attributes: ['id', 'firstName', 'lastName', 'emailAddress']
+      attributes: ['firstName', 'lastName', 'emailAddress']
     }]
 
   });
