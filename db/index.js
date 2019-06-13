@@ -9,18 +9,12 @@ console.info('Instantiating and configuring the Sequelize object instance...');
 const options = {
   dialect: 'sqlite',
   storage: 'fsjstd-restapi.db',
-  // This disables the use of string based operators
-  // in order to improve the security of our code.
-  //operatorsAliases: false,
   // This option configures Sequelize to always force the synchronization
   // of our models by dropping any existing tables.
   sync: { force: true },
   define: {
-    // This option removes the `createdAt` and `updatedAt` columns from the tables
-    // that Sequelize generates from our models. These columns are often useful
-    // with production apps, so we'd typically leave them enabled, but for our
-    // purposes let's keep things as simple as possible.
-    timestamps: false,
+  // This option adds/removes the `createdAt` and `updatedAt` columns from the tables
+  timestamps: true,
   },
 };
 
