@@ -5,6 +5,9 @@
 ## Features
 
 * Requires users to create an account and log-in to make changes to the database
+* Uses the bcryptjs npm package to hash the user's password
+* Implemented validations within your route handlers with express-validator
+* Use the basic-auth npm package to parse the Authorization header to set up permissions to require users to be signed in
 
 ## Technologies
 
@@ -13,8 +16,7 @@
 * ORM Sequelize
 * Node.js
 * Express
-* CSS
-* HTML
+* npm
 
 ## Getting Started
 
@@ -41,20 +43,10 @@ npm start
 
 To test the Express server, browse to the URL [http://localhost:5000/](http://localhost:5000/).
 
-## Demo
-
-Active demo: 
-
-## Screenshot
-
 ## Status
 
-Project is: _IN PROGRESS_
+Project is: _COMPLETED_
 
 ## Inspiration
 
 Treehouse Techdegree: FSJS project 9 - REST API
-
-## Contact
-
-Created by [@Annes](https://twitter.com/annesCode)
