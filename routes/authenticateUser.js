@@ -16,11 +16,11 @@ const { User } = models;
 const authenticateUser = asyncMiddleware(async (req, res, next) => {
     let message = null;
 
-    // Get the user's credentials from the Authorization header.
+    // Get the user's credentials from the Authorization header
     const credentials = auth(req);
 
     if (credentials) {
-        // Find user whose `Username (email address)` matches the credentials `name` property.
+        // Find user whose `Username (email address)` matches the credentials `name` property
         const user = await User.findOne({
             where: {
                 emailAddress: credentials.name

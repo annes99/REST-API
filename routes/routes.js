@@ -23,7 +23,7 @@ router.get('/users', authenticateUser, asyncMiddleware(async (req, res) => {
   const user = await req.currentUser;
 
   // Set status 200 OK, response filters out the following properties: password, createdAt, updatedAt
-  return res.status(200).json({
+  res.status(200).json({
     id: user.id,
     firstName: user.firstName,
     lastName: user.lastName,
@@ -44,7 +44,7 @@ router.post('/users', validate('user'), asyncMiddleware(async (req, res) => {
     const errorMessages = errors.array().map(error => error.msg);
 
     // Return the validation errors to the client
-    return res.status(400).json({ errors: errorMessages });
+    res.status(400).json({ errors: errorMessages });
   }
 
   // Get the user from the request body
@@ -70,11 +70,11 @@ router.post('/users', validate('user'), asyncMiddleware(async (req, res) => {
     });
 
     // Set status 201 Created, the Location header to "/" and end the response.
-    return res.status(201).location('/').end();
+    res.status(201).location('/').end();
 
   } else {
     // If user with provided email address already exists, set status 400 Bad Request with error message
-    return res.status(400).json({ message: `User with email address: ${user.emailAddress} already exists` });
+    res.status(400).json({ message: `User with email address: ${user.emailAddress} already exists` });
   }
 
 }));
@@ -92,7 +92,7 @@ router.get('/courses', asyncMiddleware(async (req, res) => {
     }]
   });
   // Set response status code 200 OK and show course
-  return res.status(200).json({ courses });
+  res.status(200).json({ courses });
 
 }));
 
@@ -117,7 +117,7 @@ router.get('/courses/:id', asyncMiddleware(async (req, res) => {
     return res.status(200).json({ course });
   } else {
     // If no course with provided ID is found set status 404 Not Found
-    return res.status(404).json({ message: 'Page not found' });
+    res.status(404).json({ message: 'Page not found' });
   }
 
 }));
@@ -134,7 +134,7 @@ router.post('/courses', validate('course'), authenticateUser, asyncMiddleware(as
     const errorMessages = errors.array().map(error => error.msg);
 
     // Return the validation errors to the client
-    return res.status(400).json({ errors: errorMessages });
+    res.status(400).json({ errors: errorMessages });
 
   } else {
 
@@ -150,7 +150,7 @@ router.post('/courses', validate('course'), authenticateUser, asyncMiddleware(as
     });
 
     // Set status 201 Created, the Location header to the URI for the course and end the response
-    return res.status(201).location(`api/courses/${newCourse.id}`).end();
+    res.status(201).location(`api/courses/${newCourse.id}`).end();
   }
 }));
 
@@ -185,15 +185,15 @@ router.put('/courses/:id', validate('course'), authenticateUser, asyncMiddleware
       if (course.userId === req.currentUser.id) {
         course.update(req.body);
         // Set status 204 No Content and end the response
-        return res.status(204).end();
+        res.status(204).end();
 
       } else {
         // Set response status code 403 Forbidden
-        return res.status(403).json({ message: 'Access Forbidden' });
+        res.status(403).json({ message: 'Access Forbidden' });
       }
     } else {
       // Set response status code 404 Not Found 
-      return res.status(404).json({ message: 'Page not found' });
+      res.status(404).json({ message: 'Page not found' });
     }
   }
 }));
@@ -220,15 +220,15 @@ router.delete('/courses/:id', authenticateUser, asyncMiddleware(async (req, res)
     if (course.userId === req.currentUser.id) {
       course.destroy();
       // Set status 204 No Content and end the response
-      return res.status(204).end();
+      res.status(204).end();
 
     } else {
       // Set response status code 403 Forbidden
-      return res.status(403).json({ message: 'Access Forbidden' });
+      res.status(403).json({ message: 'Access Forbidden' });
     }
   } else {
     // Set response status code 404 Not Found 
-    return res.status(404).json({ message: 'Page not found' });
+    res.status(404).json({ message: 'Page not found' });
   }
 }));
 
