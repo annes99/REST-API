@@ -141,13 +141,14 @@ router.post('/courses', validate('course'), authenticateUser, asyncMiddleware(as
     // Get the course from the request body and create new course
     const course = await req.body;
 
-    const newCourse = Course.create({
+    const newCourse = await Course.create({
       title: course.title,
       description: course.description,
       estimatedTime: course.estimatedTime,
       materialsNeeded: course.materialsNeeded,
       userId: req.currentUser.id
     });
+
     // Set status 201 Created, the Location header to the URI for the course and end the response
     return res.status(201).location(`api/courses/${newCourse.id}`).end();
   }
