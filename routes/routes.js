@@ -150,7 +150,8 @@ router.post('/courses', validate('course'), authenticateUser, asyncMiddleware(as
     });
 
     // Set status 201 Created, the Location header to the URI for the course and end the response
-    res.status(201).location(`api/courses/${newCourse.id}`).end();
+    res.status(201).location(`${newCourse.id}`).end();
+    //res.status(201).location(`api/courses/${newCourse.id}`).end();
   }
 }));
 
